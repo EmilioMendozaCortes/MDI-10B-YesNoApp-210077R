@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:yes_no_app_210077/config/theme/app_theme.dart';
 import 'package:yes_no_app_210077/persentation/screens/chat/chast_screen.dart';
@@ -11,12 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Yes - No App (210077)',
-      debugShowCheckedModeBanner: false,
-      // theme,
-      theme: AppTheme(selectedColor: 5).theme(),
-      home: const ChastScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ChatProvider() )
+      ],
+      child: MaterialApp(
+        title: 'Yes No App',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme( selectedColor: 0 ).theme(),
+        home: const ChastScreen()
+      ),
     );
   }
 }
